@@ -1,0 +1,215 @@
+/* Identidade irmã do quiz dos pais, com outra atmosfera.
+ *
+ * Mesma família: paleta do Rumo, Playfair nos títulos, Montserrat no texto.
+ * O que muda é o clima. O quiz dos pais tem fundo creme cheio e é mais denso,
+ * porque fala de preocupação. Este é claro, arejado e conduzido pelo verde,
+ * porque fala de descoberta. O creme aparece como respiro, não como base.
+ *
+ * Sem azul: o azul é cor de personagem da Turma Rumo e não entra em peça
+ * institucional. */
+
+:root {
+  --verde:       #3B503F;
+  --verde-claro: #6E8A73;
+  --bordo:       #6B2F3C;
+  --coral:       #FD745D;
+  --creme:       #FDDED5;
+
+  --fundo:       #FDFAF8;
+  --fundo-alt:   #FFF6F2;
+  --papel:       #FFFFFF;
+
+  --tinta:       #22201F;
+  --tinta-media: #5A5350;
+  --tinta-fraca: #8E837F;
+  --linha:       #EFE4DF;
+
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans:  'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --leitura: 34rem;
+  --raio: 16px;
+  --sombra: 0 2px 10px rgba(59, 80, 63, 0.05);
+  --sombra-forte: 0 10px 30px rgba(59, 80, 63, 0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  min-height: 100%;
+  background: var(--fundo);
+  color: var(--tinta);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, input { font-family: inherit; font-size: inherit; color: inherit; }
+
+/* Foco sempre visível, e nunca só por cor. */
+:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Container central: no desktop o quiz não se espalha pela tela toda. */
+.palco {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.centro {
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Entrada de tela. Curta de propósito: a pessoa está no celular, com pressa. */
+.entra { animation: entra 320ms cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+@keyframes entra {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.escalona > * { animation: entra 300ms cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+.escalona > *:nth-child(1) { animation-delay: 40ms; }
+.escalona > *:nth-child(2) { animation-delay: 90ms; }
+.escalona > *:nth-child(3) { animation-delay: 140ms; }
+.escalona > *:nth-child(4) { animation-delay: 190ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Tipografia */
+.serif { font-family: var(--serif); }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.22; text-wrap: balance; }
+
+.rotulo {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Botão principal */
+.botao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 56px;
+  padding: 17px 26px;
+  background: var(--verde);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: var(--sombra-forte);
+  transition: transform 160ms ease, background 160ms ease, opacity 160ms ease;
+}
+.botao:hover:not(:disabled) { transform: translateY(-1px); background: #334636; }
+.botao:active:not(:disabled) { transform: translateY(0) scale(0.99); }
+.botao:disabled {
+  background: var(--linha);
+  color: var(--tinta-fraca);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.botao-whats { background: var(--coral); }
+.botao-whats:hover:not(:disabled) { background: #ec6249; }
+
+.botao-fantasma {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; min-height: 48px; padding: 13px;
+  background: transparent; color: var(--tinta-fraca);
+  border: 1.5px solid var(--linha); border-radius: 100px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.botao-fantasma:hover { color: var(--verde); border-color: var(--verde-claro); }
+
+/* Cartão de alternativa: área de toque generosa */
+.alternativa {
+  display: block;
+  width: 100%;
+  text-align: left;
+  min-height: 62px;
+  padding: 18px 20px;
+  background: var(--papel);
+  border: 1.5px solid var(--linha);
+  border-radius: var(--raio);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--tinta);
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  transition: border-color 180ms ease, background 180ms ease,
+              transform 180ms ease, box-shadow 180ms ease;
+}
+.alternativa:hover:not(:disabled) {
+  border-color: var(--verde-claro);
+  transform: translateY(-1px);
+}
+.alternativa[aria-pressed='true'] {
+  background: var(--verde);
+  border-color: var(--verde);
+  color: #fff;
+  box-shadow: var(--sombra-forte);
+}
+.alternativa.apagada { opacity: 0.4; }
+.alternativa:disabled { cursor: default; }
+
+/* Campos */
+.campo {
+  width: 100%;
+  min-height: 54px;
+  padding: 15px 16px;
+  background: var(--papel);
+  border: 1.5px solid var(--linha);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 160ms ease;
+}
+.campo:focus { border-color: var(--verde-claro); }
+.campo::placeholder { color: var(--tinta-fraca); }
+.campo[aria-invalid='true'] { border-color: var(--coral); }
+
+.rotulo-campo {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--tinta-media);
+  margin-bottom: 6px;
+}
+
+/* Cartões de conteúdo do resultado */
+.cartao {
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  padding: 26px 24px;
+  box-shadow: var(--sombra);
+}
+.cartao-creme { background: var(--fundo-alt); border-color: transparent; }
+
+/* Largura de leitura confortável */
+.leitura { max-width: var(--leitura); }

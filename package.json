@@ -1,0 +1,21 @@
+{
+  "name": "quiz-primeira-escolha",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "esbuild teste-pontuacao.mjs --bundle --platform=node --format=esm --outfile=node_modules/.cache/teste.mjs --log-level=error && node node_modules/.cache/teste.mjs"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.0",
+    "esbuild": "^0.28.2",
+    "vite": "^5.3.1"
+  }
+}

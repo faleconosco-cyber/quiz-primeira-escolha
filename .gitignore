@@ -1,0 +1,11 @@
+# Local Netlify folder
+.netlify
+
+node_modules
+dist
+
+# saida do npm test
+node_modules/.cache
+
+# saida do npm test
+node_modules/.cache
