@@ -12,7 +12,16 @@ const PIXEL_PADRAO = {
   quiz_completed: 'CompleteRegistration',
 }
 
+// 08/10/2026: os cinco quizzes passaram a usar o MESMO pixel do site e das
+// landings, por recomendacao do curso de trafego: pixel espalhado em conta
+// diferente nao alimenta o aprendizado da campanha nem vira publico de
+// remarketing. A separacao dos funis agora e por EVENTO e por URL, nao por
+// pixel. Esta constante e o que mantem cada quiz distinguivel dentro da
+// gaveta comum: ela viaja em todo evento, para o Meta e para o GA4.
+const QUIZ = 'quiz-primeira-escolha'
+
 export function track(evento, params = {}) {
+  params = { content_category: QUIZ, ...params }
   try {
     if (typeof window.gtag === 'function') window.gtag('event', evento, params)
     if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: evento, ...params })
